@@ -1,0 +1,13 @@
+Atom 1,Atom 2,Distance (Å),Bond type
+Ag1,O1,2.052,polar covalent
+Ag1,O3,2.052,polar covalent
+Ag1,Ag2,2.926,metallic
+Ag1,Ag4,2.926,metallic
+Ag2,O1,2.052,polar covalent
+Ag2,O2,2.052,polar covalent
+Ag2,Ag3,2.926,metallic
+Ag3,O2,2.052,polar covalent
+Ag3,O4,2.052,polar covalent
+Ag3,Ag4,2.926,metallic
+Ag4,O3,2.052,polar covalent
+Ag4,O4,2.052,polar covalent
