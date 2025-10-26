@@ -1,7 +1,9 @@
 <<<<<<< HEAD
 =======
-# 🎯 OCGNN: Predicting Hubbard U for Custom Material Structures  
-*AI-powered Hubbard U prediction using Orbital Crystal Graph Neural Networks (OCGNN)*  
+# ⚙️ UPredictor: AI-Powered Hubbard U Predictor  
+
+**UPredictor** is a command-line tool that predicts **Hubbard U and J values** for custom materials using a pre-trained ensemble model (MLP + RF).  
+It only requires a `.cif` file and the target atomic species — perfect for rapid screening before DFT+U calculations.  
 
 ---
 
@@ -98,12 +100,85 @@ However, obtaining accurate **U values** is **computationally expensive** — of
 
 ---
 
-## 🚀 How to Use  
+## 🚀 Quick Start  
 
-### 🧩 1. Setup Environment
+### 🧩 1. Clone & Setup  
 ```bash
-git clone https://github.com/yourusername/OCGNN-HubbardU.git
-cd OCGNN-HubbardU
-pip install -r requirements.txt
+    git clone https://github.com/yourusername/OCGNN-HubbardU.git
+    cd OCGNN-HubbardU
+    python3 -m venv jlab_env
+    source jlab_env/bin/activate      # macOS/Linux
+    jlab_env\Scripts\activate       # Windows
 
->>>>>>> e3bcf24e82a2148271463bf46089afcd77bfbb29
+    pip install -r requirements.txt 
+```
+
+###  ⚙️ 2. Install the CLI Tool
+**From inside the project directory, run:**
+
+```bash 
+    pip install -e . 
+```
+
+    This registers the command-line interface upredictor, allowing you to run it anywhere.
+
+### 🧠 3. Run the Predictor
+
+    Simply type:  ```bash upredictor``` 
+
+
+**You’ll see the startup banner:**
+```bash
+      _    _ _____           _           _             
+     | |  | |  __ \         (_)         | |            
+     | |  | | |__) |_ _ _ __ _  ___  ___| |_ ___  _ __ 
+     | |  | |  ___/ _` | '__| |/ _ \/ __| __/ _ \| '__|
+     | |__| | |  | (_| | |  | |  __/\__ \ || (_) | |   
+      \____/|_|   \__,_|_|  |_|\___||___/\__\___/|_|   
+                                                    
+    Welcome to the UPredictor ML Engine!
+    ------------------------------------
+```
+**Then follow the interactive prompts:**
+```bash
+    Enter path to CIF file: /path/to/material.cif
+    Enter species to analyze (e.g., Fe, C, Ni): Fe 
+```
+
+**After a few seconds, it outputs predictions:**
+```bash
+    Predicted Properties:
+    MLP Prediction (U, J): [4.32, 0.71]
+    RF Prediction (U, J): [4.28, 0.68]
+    Ensemble Prediction (U, J): [4.30, 0.70] 
+```
+
+### ⚠️ 4. Troubleshooting
+**Error:**
+```bah
+    FileNotFoundError: './engine/hubbard_uj_poly.pkl' 
+```
+
+**Solution:**
+    Ensure the engine/ folder exists in the same directory where you run the command and includes:
+```bash
+    engine/
+     ├── hubbard_uj_poly.pkl
+     ├── hubbard_uj_scaler.pkl
+     ├── hubbard_uj_rf.pkl
+     └── hubbard_uj_mlp.pth
+ ```
+
+### 💡 5. Tip
+
+        UPredictor works offline after setup and supports any CIF file compatible with pymatgen.
+    
+### 🧩 6. Example Workflow
+
+        Prepare your custom .cif file.
+        Run upredictor from the terminal.
+        Enter:
+        The path to your CIF file
+        The target species (e.g., Fe, C, Ni)
+        Get instant predictions for Hubbard U and J.
+
