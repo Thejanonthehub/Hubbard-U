@@ -1,35 +1,34 @@
-# main.py
-from dataset import HubbardDataset
-from models import MLP, RandomForestModel
-from training import Trainer
-from evaluation import Evaluator
+from data_loader import DataModule
+from mlp_model import MLP
+from rf_model import RFModel
+from trainer import Trainer
+from predictor import Predictor
+from evaluator import Evaluator
+from saver import Saver
 
-def main():
-    # === User input ===
-    train_pct = float(input("Enter training size as decimal (e.g., 0.9 for 90%): ").strip())
-    u_j_file = "../hubbard_u_j_values.csv"
-    features_file = "../features_list.csv"
-    alpha = 0.7
+# Input files
+u_j_file = '../hubbard_u_j_values.csv'
+features_file = '../features_list.csv'
 
-    # === Dataset ===
-    dataset = HubbardDataset(u_j_file, features_file, train_size=train_pct)
+# Initialize data module (training size will ask user as in original)
+data_module = DataModule(u_j_file, features_file)
 
-    # === Models ===
-    input_size = dataset.X_train.shape[1]
-    mlp = MLP(input_size=input_size, hidden_size=128)
-    rf = RandomForestModel()
+# Initialize models
+mlp_model = MLP(input_size=data_module.X_train.shape[1])
+rf_model = RFModel()
 
-    # === Train MLP ===
-    trainer = Trainer(mlp, dataset.train_loader)
-    trainer.train(num_epochs=500, patience=50)
+# Training
+trainer = Trainer(mlp_model, rf_model, data_module)
+trainer.train()
 
-    # === Train Random Forest ===
-    rf.fit(dataset.X_train, dataset.y_train)
-    print(f"RF OOB Score: {rf.model.oob_score_:.3f}")
+# Prediction
+predictor = Predictor(mlp_model, rf_model, data_module)
 
-    # === Evaluate ===
-    evaluator = Evaluator(mlp, rf.model, dataset.poly, dataset.scaler, alpha)
-    evaluator.evaluate(dataset.X_test, dataset.y_test)
+# Evaluation
+evaluator = Evaluator(predictor, data_module)
+results = evaluator.evaluate()
+print(results)
 
-if __name__ == "__main__":
-    main()
+# Save models
+saver = Saver(mlp_model, rf_model, data_module)
+saver.save()
