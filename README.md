@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+=======
 # 🎯 OCGNN: Predicting Hubbard U for Custom Material Structures  
 *AI-powered Hubbard U prediction using Orbital Crystal Graph Neural Networks (OCGNN)*  
 
@@ -104,3 +106,4 @@ git clone https://github.com/yourusername/OCGNN-HubbardU.git
 cd OCGNN-HubbardU
 pip install -r requirements.txt
 
+>>>>>>> e3bcf24e82a2148271463bf46089afcd77bfbb29
