@@ -1,4 +1,4 @@
-# 🎯 OCGNN: Predicting Hubbard U for Custom Materials  
+# 🎯 OCGNN: Predicting Hubbard U for Custom Material Structures  
 *AI-powered Hubbard U prediction using Orbital Crystal Graph Neural Networks (OCGNN)*  
 
 ---
