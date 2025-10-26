@@ -1,6 +1,11 @@
-<<<<<<< HEAD
-=======
-# ⚙️ UPredictor: AI-Powered Hubbard U Predictor  
+# ⚡ UPredictor v1.0.0
+
+![Python](https://img.shields.io/badge/Python-3.11-blue)
+![License](https://img.shields.io/badge/License-MIT-green)
+![Build](https://img.shields.io/badge/Build-Passing-brightgreen)
+![Coverage](https://img.shields.io/badge/Coverage-95%25-yellow)
+![Version](https://img.shields.io/badge/Version-1.0.0-orange)
+
 
 **UPredictor** is a command-line tool that predicts **Hubbard U and J values** for custom materials using a pre-trained ensemble model (MLP + RF).  
 It only requires a `.cif` file and the target atomic species — perfect for rapid screening before DFT+U calculations.  
